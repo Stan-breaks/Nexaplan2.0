@@ -23,7 +23,7 @@ app.use(
 const authRoutes = require("./routes/auth");
 app.use("/api/auth", authRoutes);
 
-//ensure user is logged in
+//ensure login
 app.use((req, res, next) => {
   if (req.session.user) {
     next();
@@ -32,10 +32,9 @@ app.use((req, res, next) => {
   }
 });
 
-//private routes
-app.get("/api/private", (req, res) => {
-  res.send("Private route");
-});
+//routes
+const taskRoutes = require("./routes/task");
+app.use("/api/task", taskRoutes);
 
 // start server
 app.listen(port, () => {
