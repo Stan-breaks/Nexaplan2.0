@@ -36,6 +36,9 @@ app.use((req, res, next) => {
 const taskRoutes = require("./routes/task");
 app.use("/api/task", taskRoutes);
 
+const projectRoutes = require("./routes/project");
+app.use("/api/project", projectRoutes);
+
 // start server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

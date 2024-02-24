@@ -1,14 +1,15 @@
 const mongoose = require("mongoose");
-const taskSchema = new mongoose.Schema({
+
+const projectSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  taskName: {
+  projectName: {
     type: String,
     required: true,
   },
-  taskDescription: {
+  projectDescription: {
     type: String,
     required: true,
   },
@@ -16,31 +17,24 @@ const taskSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  project: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Project",
-    default: null,
-  },
   isCompleted: {
     type: Boolean,
     default: false,
-  },
-  dueDate: {
-    type: Date,
-    required: true,
   },
   category: {
     type: String,
     required: true,
   },
-  hasProject: {
-    type: Boolean,
-    default: false,
-  },
+  contributors: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
   created: {
     type: Date,
     default: Date.now,
   },
 });
 
-module.exports = mongoose.model("Task", taskSchema);
+module.exports = mongoose.model("Project", projectSchema);
